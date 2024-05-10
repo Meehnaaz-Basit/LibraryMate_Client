@@ -9,6 +9,7 @@ import Login from "./pages/logins/Login";
 import Register from "./pages/logins/Register";
 import AuthProvider from "./provider/AuthProvider";
 import AddBooks from "./pages/AddBooks";
+import AllBooks from "./pages/AllBooks";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
       {
         path: "/addBooks",
         element: <AddBooks></AddBooks>,
+      },
+      {
+        path: "/allBooks",
+        element: <AllBooks></AllBooks>,
+        loader: () => fetch("http://localhost:5000/allBooks"),
       },
     ],
   },

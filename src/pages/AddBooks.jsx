@@ -22,6 +22,18 @@ const AddBooks = () => {
       about,
     };
     console.log(newAddedBook);
+
+    fetch("http://localhost:5000/allBooks", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newAddedBook),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   return (
