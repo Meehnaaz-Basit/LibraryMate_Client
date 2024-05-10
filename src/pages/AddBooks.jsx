@@ -108,7 +108,7 @@ const AddBooks = () => {
                   <option>Business</option>
                   <option>Medical</option>
                   <option>History</option>
-                  <option>True Crime</option>
+                  <option>Law</option>
                 </select>
               </div>
               <div className="col-span-full sm:col-span-3">

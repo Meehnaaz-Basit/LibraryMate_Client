@@ -1,6 +1,5 @@
 const BookTable = ({ book, serialNumber }) => {
-  const { book_image, book_name, quantity, author_name, category, rating } =
-    book;
+  const { book_image, book_name, author_name, category, rating } = book;
   return (
     <>
       <tr>

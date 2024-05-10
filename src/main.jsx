@@ -10,6 +10,8 @@ import Register from "./pages/logins/Register";
 import AuthProvider from "./provider/AuthProvider";
 import AddBooks from "./pages/AddBooks";
 import AllBooks from "./pages/AllBooks";
+import BookByCategory from "./components/bookByCat/BookByCategory";
+import BookDetailById from "./pages/bookdetail-pages/BookDetailById";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,18 @@ const router = createBrowserRouter([
         path: "/allBooks",
         element: <AllBooks></AllBooks>,
         loader: () => fetch("http://localhost:5000/allBooks"),
+      },
+      {
+        path: "/singleCategory/:category",
+        element: <BookByCategory></BookByCategory>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/singleCategory/${params.category}`),
+      },
+      {
+        path: "/bookDetail/:id",
+        element: <BookDetailById></BookDetailById>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/bookDetail/${params.id}`),
       },
     ],
   },
