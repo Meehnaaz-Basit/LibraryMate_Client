@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Nav = () => {
   //   const [theme, setTheme] = useState(null); // Set initial theme to null
@@ -21,10 +23,10 @@ const Nav = () => {
   //     document.querySelector("html").setAttribute("data-theme", newTheme);
   //   };
 
-  //   const { user, logOut } = useContext(AuthContext);
-  //   const handleLogOut = () => {
-  //     logOut().then().catch();
-  //   };
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut().then().catch();
+  };
   const navMenu = (
     <>
       <NavLink
@@ -103,9 +105,35 @@ const Nav = () => {
           <ul className="menu menu-horizontal px-1">{navMenu}</ul>
         </div>
         <div className="navbar-end md:gap-4 gap-1">
-          <Link to="/login">
-            <button>login</button>
-          </Link>
+          {user ? (
+            <>
+              <div>
+                {user.photoURL ? (
+                  <img
+                    className="md:w-14 md:h-14 w-10 h-10 rounded-full border-2 object-cover "
+                    title={user.displayName}
+                    src={user.photoURL}
+                    alt="Profile"
+                  />
+                ) : (
+                  <img
+                    className="md:w-14 md:h-14 w-10 h-10 rounded-full border-2  object-cover "
+                    src="https://i.ibb.co/X3yrLFJ/pngegg.png"
+                    alt=""
+                  />
+                )}
+              </div>
+              <div>
+                <button onClick={handleLogOut}>logout</button>
+              </div>
+            </>
+          ) : (
+            <>
+              <Link to="/login">
+                <button>login</button>
+              </Link>
+            </>
+          )}
         </div>
 
         {/* <a id="clickable" className="z-30">
