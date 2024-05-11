@@ -1,5 +1,15 @@
+import { Link } from "react-router-dom";
+
 const BookTable = ({ book, serialNumber }) => {
-  const { book_image, book_name, author_name, category, rating } = book;
+  const {
+    _id,
+    book_image,
+    book_name,
+    author_name,
+    category,
+    rating,
+    quantity,
+  } = book;
   return (
     <>
       <tr>
@@ -10,9 +20,12 @@ const BookTable = ({ book, serialNumber }) => {
         <td>{book_name}</td>
         <td>{author_name}</td>
         <td>{category}</td>
+        <td>{quantity}</td>
         <td>{rating}</td>
         <td className="flex flex-col">
-          <button>Details</button>
+          <Link to={`/bookDetail/${_id}`} className="btn">
+            Details
+          </Link>
           <button>Update</button>
         </td>
       </tr>

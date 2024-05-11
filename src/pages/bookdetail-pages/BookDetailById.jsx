@@ -7,38 +7,46 @@ const BookDetailById = () => {
   const { user } = useContext(AuthContext);
 
   const book = useLoaderData();
-  const { book_name, book_image } = book;
+  const { _id, book_name, book_image } = book;
 
   const handleCloseModal = (e) => {
     e.preventDefault();
     document.getElementById("my_modal_1").close();
   };
 
-  // const handleBorrow = async () => {
-  //   try {
-  //     await fetch(`http://localhost:5000/borrowBook/${_id}`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         userId: user?.id,
-  //       }),
-  //     });
+  const handleBorrow = (e) => {
+    e.preventDefault();
+    console.log("borrowed submit pressed");
+    document.getElementById("my_modal_1").close();
 
-  //     // If borrowing is successful, close the modal
-  //     handleCloseModal();
-  //   } catch (error) {
-  //     console.error("Error borrowing book:", error);
-  //     // You can handle errors here if needed
-  //   }
-  // };
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const date = e.target.date.value;
+    const image = user.photoURL;
+    const book_id = e.target._id.value;
+    const book_name = e.target.book_name.value;
+
+    const borrower_info = { name, email, date, image, book_id, book_name };
+    console.log(borrower_info);
+
+    fetch("http://localhost:5000/allBorrowers", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(borrower_info),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
 
   return (
     <div>
       <h2>detail: {book_name}</h2>
       <div>
-        <img src={book_image} alt="" />
+        <img className="h-60 object-contain" src={book_image} alt="" />
       </div>
       <div>
         <button
@@ -54,34 +62,58 @@ const BookDetailById = () => {
             </h3>
 
             <div className="modal-action justify-center">
-              <form method="dialog" onSubmit={handleBorrow}>
+              <form onSubmit={handleBorrow}>
                 <div className="">
                   <div className="mb-4">
-                    <label htmlFor="user_name" className="text-sm">
-                      Borrower Name
-                    </label>
                     <input
-                      id="user_name"
-                      type="text"
+                      id="book_name"
+                      type="hidden"
                       // placeholder="Enter Book Name"
-                      defaultValue={user?.displayName}
+                      defaultValue={book_name}
                       disabled
-                      name="user_name"
+                      name="book_name"
                       className="w-full p-3 border-b-2"
                       required
                     />
                   </div>
                   <div className="mb-4">
-                    <label htmlFor="user_email" className="text-sm">
+                    <input
+                      id="_id"
+                      type="hidden"
+                      // placeholder="Enter Book Name"
+                      defaultValue={_id}
+                      disabled
+                      name="_id"
+                      className="w-full p-3 border-b-2"
+                      required
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="name" className="text-sm">
+                      Borrower Name
+                    </label>
+                    <input
+                      id="name"
+                      type="text"
+                      // placeholder="Enter Book Name"
+                      defaultValue={user?.displayName}
+                      disabled
+                      name="name"
+                      className="w-full p-3 border-b-2"
+                      required
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="email" className="text-sm">
                       Borrower Email
                     </label>
                     <input
-                      id="user_email"
+                      id="email"
                       type="text"
                       // placeholder="Enter Book Name"
                       defaultValue={user?.email}
                       disabled
-                      name="user_email"
+                      name="email"
                       className="w-full p-3 border-b-2"
                       required
                     />
@@ -100,7 +132,7 @@ const BookDetailById = () => {
                   </div>
                 </div>
                 <div>
-                  <button>submit</button>
+                  <button type="submit">submit</button>
                   <button onClick={handleCloseModal} className="btn">
                     Close
                   </button>

@@ -59,6 +59,26 @@ const Nav = () => {
       >
         Add Books
       </NavLink>
+      <NavLink
+        to="/allBorrowers"
+        className={({ isActive }) =>
+          isActive
+            ? " border-b-2 border-teal-700 text-teal-600 bg-transparent py-2 px-3 mx-2  font-bold"
+            : "border-b-2 border-transparent  py-2 px-3 mx-2 font-bold  hover:text-teal-600 hover:bg-transparent transition-all"
+        }
+      >
+        Borrowers List
+      </NavLink>
+      <NavLink
+        to="/myBorrowed"
+        className={({ isActive }) =>
+          isActive
+            ? " border-b-2 border-teal-700 text-teal-600 bg-transparent py-2 px-3 mx-2  font-bold"
+            : "border-b-2 border-transparent  py-2 px-3 mx-2 font-bold  hover:text-teal-600 hover:bg-transparent transition-all"
+        }
+      >
+        My Borrowed Books
+      </NavLink>
     </>
   );
   return (
@@ -96,9 +116,9 @@ const Nav = () => {
           </div>
           <a
             href="/"
-            className="md:text-4xl text-xl font-extrabold text-purple-600 font-merriweather"
+            className="md:text-4xl text-xl font-extrabold text-teal-600 font-merriweather"
           >
-            Library<span className="text-teal-600">Mate</span>
+            Library<span className="text-orange-600">Mate</span>
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">

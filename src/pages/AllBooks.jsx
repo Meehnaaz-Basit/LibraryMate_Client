@@ -48,6 +48,7 @@ const AllBooks = () => {
                     <th>Name</th>
                     <th>Author</th>
                     <th>Category</th>
+                    <th>Quantity</th>
                     <th>Rating</th>
                     <th>Action</th>
                   </tr>

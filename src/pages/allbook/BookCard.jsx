@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
+
 const BookCard = ({ book }) => {
   const {
+    _id,
     book_image,
     book_name,
     quantity,
@@ -24,7 +27,9 @@ const BookCard = ({ book }) => {
         <p>Category: {category}</p>
         <p>Rating: {rating}</p>
         <div className="card-actions">
-          <button className="btn btn-primary">View Details</button>
+          <Link to={`/bookDetail/${_id}`} className="btn btn-primary">
+            View Details
+          </Link>
           <button className="btn btn-primary">Update</button>
         </div>
       </div>
