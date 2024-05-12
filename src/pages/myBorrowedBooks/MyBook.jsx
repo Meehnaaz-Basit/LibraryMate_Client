@@ -1,7 +1,14 @@
 const MyBook = ({ book }) => {
   const { name, email, date, book_id, book_name } = book;
 
-  const handleReturn = (e) => {
+  // const handleReturn = (e) => {
+  //   e.preventDefault();
+  //   console.log("clicked return", book);
+
+  //   // Call the returnBook endpoint
+  // };
+
+  const handleReturn = async (e) => {
     e.preventDefault();
     console.log("clicked return", book);
   };
@@ -17,6 +24,7 @@ const MyBook = ({ book }) => {
         </figure> */}
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
+        <h2 className="card-title">{book_name}</h2>
         <div>
           <button onClick={handleReturn} className="btn btn-secondary">
             {" "}

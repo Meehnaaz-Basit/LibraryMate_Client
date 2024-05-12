@@ -26,7 +26,14 @@ const BookDetailById = () => {
     const book_id = e.target._id.value;
     const book_name = e.target.book_name.value;
 
-    const borrower_info = { name, email, date, image, book_id, book_name };
+    const borrower_info = {
+      name,
+      email,
+      date,
+      image,
+      book_id,
+      book_name,
+    };
     console.log(borrower_info);
 
     fetch("http://localhost:5000/allBorrowers", {
