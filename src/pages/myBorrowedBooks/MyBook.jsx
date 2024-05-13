@@ -1,16 +1,49 @@
-const MyBook = ({ book }) => {
-  const { name, email, date, book_id, book_name } = book;
+import Swal from "sweetalert2";
 
-  // const handleReturn = (e) => {
-  //   e.preventDefault();
-  //   console.log("clicked return", book);
+const MyBook = ({ book, books, setBooks }) => {
+  const { _id, name, email, date, book_id, book_name, quantity } = book;
 
-  //   // Call the returnBook endpoint
-  // };
-
-  const handleReturn = async (e) => {
-    e.preventDefault();
-    console.log("clicked return", book);
+  const handleReturn = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/allBorrowers/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              // Remove the deleted item from userCrafts
+              const updatedUserBooks = books.filter(
+                (craft) => craft._id !== _id
+              );
+              // Update the state with the new userCrafts
+              // setUserCrafts(updatedUserCrafts);
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your Craft item has been deleted.",
+                icon: "success",
+              });
+              setBooks(updatedUserBooks);
+            }
+          })
+          .catch((error) => {
+            console.error("Error deleting craft:", error);
+            Swal.fire({
+              title: "Error!",
+              text: "An error occurred while deleting the craft.",
+              icon: "error",
+            });
+          });
+      }
+    });
   };
 
   return (
@@ -26,7 +59,10 @@ const MyBook = ({ book }) => {
         <h2 className="card-title">{name}</h2>
         <h2 className="card-title">{book_name}</h2>
         <div>
-          <button onClick={handleReturn} className="btn btn-secondary">
+          <button
+            onClick={() => handleReturn(_id)}
+            className="btn btn-secondary"
+          >
             {" "}
             Return
           </button>
