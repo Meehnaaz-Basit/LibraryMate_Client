@@ -1,27 +1,27 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 
 const Nav = () => {
-  //   const [theme, setTheme] = useState(null); // Set initial theme to null
+  const [theme, setTheme] = useState(null); // Set initial theme to null
 
-  //   useEffect(() => {
-  //     const localTheme = localStorage.getItem("theme");
-  //     if (localTheme) {
-  //       setTheme(localTheme);
-  //       document.querySelector("html").setAttribute("data-theme", localTheme);
-  //     } else {
-  //       setTheme("light");
-  //       localStorage.setItem("theme", "light");
-  //     }
-  //   }, []);
+  useEffect(() => {
+    const localTheme = localStorage.getItem("theme");
+    if (localTheme) {
+      setTheme(localTheme);
+      document.querySelector("html").setAttribute("data-theme", localTheme);
+    } else {
+      setTheme("light");
+      localStorage.setItem("theme", "light");
+    }
+  }, []);
 
-  //   const handleToggle = (e) => {
-  //     const newTheme = e.target.checked ? "luxury" : "light";
-  //     setTheme(newTheme);
-  //     localStorage.setItem("theme", newTheme);
-  //     document.querySelector("html").setAttribute("data-theme", newTheme);
-  //   };
+  const handleToggle = (e) => {
+    const newTheme = e.target.checked ? "night" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.querySelector("html").setAttribute("data-theme", newTheme);
+  };
 
   const { user, logOut } = useContext(AuthContext);
   const handleLogOut = () => {
@@ -156,13 +156,13 @@ const Nav = () => {
           )}
         </div>
 
-        {/* <a id="clickable" className="z-30">
+        <a id="clickable" className="z-30">
           {theme !== null && (
             <label className="cursor-pointer grid place-items-center">
               <input
                 onChange={handleToggle}
                 type="checkbox"
-                checked={theme === "luxury"}
+                checked={theme === "night"}
                 // value="synthwave"
                 className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2"
               />
@@ -198,9 +198,6 @@ const Nav = () => {
             </label>
           )}
         </a>
-        <Tooltip anchorSelect="#clickable" className="z-40" clickable>
-          <button>Change theme</button>
-        </Tooltip> */}
       </div>
     </div>
   );

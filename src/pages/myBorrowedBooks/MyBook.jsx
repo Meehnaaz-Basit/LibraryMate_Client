@@ -5,13 +5,13 @@ const MyBook = ({ book, books, setBooks }) => {
 
   const handleReturn = (_id) => {
     Swal.fire({
-      title: "Are you sure?",
+      title: "Do you want to return ?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, Return!",
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/allBorrowers/${_id}`, {
@@ -27,8 +27,8 @@ const MyBook = ({ book, books, setBooks }) => {
               // Update the state with the new userCrafts
               // setUserCrafts(updatedUserCrafts);
               Swal.fire({
-                title: "Deleted!",
-                text: "Your Craft item has been deleted.",
+                title: "Returned!",
+                text: "The book has been returned.",
                 icon: "success",
               });
               setBooks(updatedUserBooks);

@@ -18,7 +18,7 @@ const BookCard = ({ book }) => {
         <img
           src={book_image}
           alt="book"
-          className="h-60 w-full object-contain bg-gray-200"
+          className="h-60 w-full object-contain "
         />
       </figure>
       <div className="card-body">
@@ -30,7 +30,9 @@ const BookCard = ({ book }) => {
           <Link to={`/bookDetail/${_id}`} className="btn btn-primary">
             View Details
           </Link>
-          <button className="btn btn-primary">Update</button>
+          <Link to={`/update/${_id}`} className="btn btn-primary">
+            Update
+          </Link>
         </div>
       </div>
     </div>

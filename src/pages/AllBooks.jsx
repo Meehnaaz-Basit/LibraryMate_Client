@@ -5,7 +5,7 @@ import BookTable from "./allbook/BookTable";
 
 const AllBooks = () => {
   const books = useLoaderData();
-
+  const [filter, setFilter] = useState("all");
   const [view, setView] = useState("card");
   const [serialNumber, setSerialNumber] = useState(1);
 
@@ -14,14 +14,38 @@ const AllBooks = () => {
     setView(event.target.value);
   };
 
+  // Function to handle the filter dropdown menu change
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
+  };
+
+  // Function to filter books based on quantity
+  const getFilteredBooks = () => {
+    if (filter === "available") {
+      return books.filter((book) => book.quantity > 0);
+    }
+    return books;
+  };
+
+  const filteredBooks = getFilteredBooks();
+
   return (
     <div>
-      <div>
-        {/* Dropdown menu */}
-        <select value={view} onChange={handleViewChange}>
-          <option value="card">Card View</option>
-          <option value="table">Table View</option>
-        </select>
+      <div className="flex justify-between">
+        <div>
+          {/* Dropdown menu */}
+          <select value={view} onChange={handleViewChange}>
+            <option value="card">Card View</option>
+            <option value="table">Table View</option>
+          </select>
+        </div>
+        <div>
+          {/* dropdown for books quantity more than 0 */}
+          <select value={filter} onChange={handleFilterChange}>
+            <option value="all">All Books</option>
+            <option value="available">Available Books</option>
+          </select>
+        </div>
       </div>
       <h2>all books here</h2>
 
@@ -31,7 +55,7 @@ const AllBooks = () => {
         {view === "card" ? (
           // Display books as cards
           <div className="card-view grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
-            {books.map((book) => (
+            {filteredBooks.map((book) => (
               <BookCard book={book} key={book._id}></BookCard>
             ))}
           </div>
@@ -55,7 +79,7 @@ const AllBooks = () => {
                 </thead>
                 <tbody>
                   {/* row 1 */}
-                  {books.map((book, index) => (
+                  {filteredBooks.map((book, index) => (
                     <BookTable
                       book={book}
                       serialNumber={serialNumber + index}

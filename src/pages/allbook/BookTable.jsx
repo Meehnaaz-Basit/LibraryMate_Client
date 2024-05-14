@@ -26,7 +26,7 @@ const BookTable = ({ book, serialNumber }) => {
           <Link to={`/bookDetail/${_id}`} className="btn">
             Details
           </Link>
-          <button>Update</button>
+          <Link to={`/update/${_id}`}>Update</Link>
         </td>
       </tr>
     </>

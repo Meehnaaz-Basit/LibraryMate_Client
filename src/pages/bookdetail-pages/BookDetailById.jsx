@@ -1,13 +1,37 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 import { AuthContext } from "../../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const BookDetailById = () => {
   const { user } = useContext(AuthContext);
 
   const book = useLoaderData();
   const { _id, book_name, book_image } = book;
+
+  const [borrowedBooks, setBorrowedBooks] = useState([]);
+
+  useEffect(() => {
+    if (!user || !user.email) {
+      console.log("User not logged in or email not available");
+      return;
+    }
+
+    fetch(`http://localhost:5000/allBorrowers/${user.email}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setBorrowedBooks(data);
+      })
+      .catch((err) => {
+        console.error("Error fetching borrowed books:", err);
+      });
+  }, [user]);
 
   const handleCloseModal = (e) => {
     e.preventDefault();
@@ -16,6 +40,32 @@ const BookDetailById = () => {
 
   const handleBorrow = (e) => {
     e.preventDefault();
+
+    const bookId = e.target._id.value;
+
+    const borrowedCount = borrowedBooks.filter(
+      (borrowedBook) => borrowedBook.book_id === bookId
+    ).length;
+    if (borrowedCount >= 1) {
+      document.getElementById("my_modal_1").close();
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `You cannot borrow as you have already borrowed it twice.`,
+      });
+      return;
+    }
+    // Check if the user has already borrowed 3 different books
+    if (borrowedBooks.length >= 3) {
+      document.getElementById("my_modal_1").close();
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You have reached the borrowed limitation of 3 books.",
+      });
+      return;
+    }
+
     console.log("borrowed submit pressed");
     document.getElementById("my_modal_1").close();
 
@@ -46,6 +96,23 @@ const BookDetailById = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+
+        // Update borrowedBooks state after successful borrow operation
+        setBorrowedBooks([...borrowedBooks, bookId]);
+
+        Swal.fire({
+          icon: "success",
+          title: "Success!",
+          text: "The book has been successfully borrowed.",
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "No book Quantity left to be borrowed",
+        });
       });
   };
 
