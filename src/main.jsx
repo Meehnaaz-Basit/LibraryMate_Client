@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/Root";
 import Home from "./pages/homesPage/Home";
 import Login from "./pages/logins/Login";
-import Register from "./pages/logins/Register";
+
 import AuthProvider from "./provider/AuthProvider";
 import AddBooks from "./pages/AddBooks";
 import AllBooks from "./pages/AllBooks";
@@ -16,6 +16,8 @@ import AllBorrowers from "./pages/allBorrowers/AllBorrowers";
 import MyBorrowedBooks from "./pages/myBorrowedBooks/MyBorrowedBooks";
 import Update from "./pages/Update";
 import Error404 from "./pages/Error404";
+import PrivateRoute from "./routes/PrivateRoute";
+import Register from "./pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +39,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addBooks",
-        element: <AddBooks></AddBooks>,
+        element: (
+          <PrivateRoute>
+            <AddBooks></AddBooks>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/allBooks",
@@ -52,23 +58,39 @@ const router = createBrowserRouter([
       },
       {
         path: "/bookDetail/:id",
-        element: <BookDetailById></BookDetailById>,
+        element: (
+          <PrivateRoute>
+            <BookDetailById></BookDetailById>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/bookDetail/${params.id}`),
       },
       {
         path: "/allBorrowers",
-        element: <AllBorrowers></AllBorrowers>,
+        element: (
+          <PrivateRoute>
+            <AllBorrowers></AllBorrowers>
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/allBorrowers"),
       },
       {
         path: "/myBorrowed",
-        element: <MyBorrowedBooks></MyBorrowedBooks>,
+        element: (
+          <PrivateRoute>
+            <MyBorrowedBooks></MyBorrowedBooks>
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/allBorrowers"),
       },
       {
         path: "/update/:id",
-        element: <Update></Update>,
+        element: (
+          <PrivateRoute>
+            <Update></Update>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/bookDetail/${params.id}`),
       },

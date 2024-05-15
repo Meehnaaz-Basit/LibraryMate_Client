@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../provider/AuthProvider";
+
 import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
@@ -25,21 +26,21 @@ const Register = () => {
     console.log(name, email, password, photoURL);
 
     // Password validation
-    // if (!containsUppercase(password)) {
-    //   toast.error("Password must contain an uppercase letter");
+    if (!containsUppercase(password)) {
+      toast.error("Password must contain an uppercase letter");
 
-    //   return;
-    // }
-    // if (!specialCharacter(password)) {
-    //   toast.error("Password must contain a special character");
+      return;
+    }
+    if (!specialCharacter(password)) {
+      toast.error("Password must contain a special character");
 
-    //   return;
-    // }
-    // if (!hasSufficientLength(password)) {
-    //   toast.error("Password must be at least 6 characters long");
+      return;
+    }
+    if (!hasSufficientLength(password)) {
+      toast.error("Password must be at least 6 characters long");
 
-    //   return;
-    // }
+      return;
+    }
 
     // create
     createUser(email, password, photoURL)
@@ -58,7 +59,7 @@ const Register = () => {
             "Email is already in use. Please use a different email address."
           );
         } else {
-          toast.error("Error registering");
+          toast.error(error.message);
         }
       });
   };

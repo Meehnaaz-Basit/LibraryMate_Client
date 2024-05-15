@@ -1,10 +1,14 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const { logIn, loginWithGoogle } = useContext(AuthContext);
-
+  const [showPassword, setShowPassword] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -18,9 +22,21 @@ const Login = () => {
     logIn(email, password)
       .then((result) => {
         console.log(result.user);
+        toast.success("Logged In Successfully");
+        // navigate after login
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         console.log(error.message);
+        if (error.code === "auth/wrong-password") {
+          toast.error("Incorrect password. Please try again.");
+        } else if (error.code === "auth/user-not-found") {
+          toast.error("User not found. Please check your email address.");
+        } else if (error.code === "auth/invalid-credential") {
+          toast.error("Please check your email or password again");
+        } else {
+          toast.error("An error occurred. Please try again later.");
+        }
       });
   };
   const handleGoogleLogIn = (e) => {
@@ -28,6 +44,9 @@ const Login = () => {
     loginWithGoogle()
       .then((result) => {
         console.log(result.user);
+        toast.success("Logged In Successfully with Google ");
+        // navigate after login
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         console.log(error.message);
@@ -36,7 +55,7 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center min-h-[calc(100vh-306px)] my-12">
-      <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-6xl ">
+      <div className="flex w-full max-w-sm mx-auto overflow-hidden  rounded-lg shadow-lg  lg:max-w-6xl ">
         <div
           className="hidden bg-cover bg-center lg:block lg:w-1/2"
           style={{
@@ -102,14 +121,15 @@ const Login = () => {
               </label>
               <input
                 id="LoggingEmailAddress"
-                autoComplete="email"
+                // autoComplete="email"
+                placeholder="Your email address"
                 name="email"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
+                className="block w-full px-4 py-2 text-gray-700  border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
                 type="email"
               />
             </div>
 
-            <div className="mt-4">
+            <div className="mt-4 relative">
               <div className="flex justify-between">
                 <label
                   className="block mb-2 text-sm font-medium text-gray-600 "
@@ -120,12 +140,23 @@ const Login = () => {
               </div>
 
               <input
-                id="loggingPassword"
-                autoComplete="current-password"
+                type={showPassword ? "text" : "password"}
+                // type="password"
                 name="password"
-                className="block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
-                type="password"
+                placeholder="Password"
+                className="block w-full px-4 py-2 text-gray-700  border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300"
+                required
               />
+              <span
+                className="absolute right-6 bottom-4"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <FaEye className="text-gray-600 cursor-pointer"></FaEye>
+                ) : (
+                  <FaEyeSlash className="text-gray-600 cursor-pointer"></FaEyeSlash>
+                )}
+              </span>
             </div>
             <div className="mt-6">
               <button
