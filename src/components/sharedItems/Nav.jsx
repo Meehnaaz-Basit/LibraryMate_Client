@@ -4,7 +4,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 import Button from "./Button";
 
 const Nav = () => {
-  const [theme, setTheme] = useState(null); // Set initial theme to null
+  const [theme, setTheme] = useState(null);
 
   useEffect(() => {
     const localTheme = localStorage.getItem("theme");
@@ -50,6 +50,7 @@ const Nav = () => {
       >
         All Books
       </NavLink>
+
       <NavLink
         to="/addBooks"
         className={({ isActive }) =>
@@ -70,6 +71,7 @@ const Nav = () => {
       >
         Borrowers List
       </NavLink>
+
       <NavLink
         to="/myBorrowed"
         className={({ isActive }) =>
