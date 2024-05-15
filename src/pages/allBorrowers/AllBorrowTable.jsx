@@ -1,5 +1,5 @@
 const AllBorrowTable = ({ borrower, serialNumber }) => {
-  const { name, email, date, image, book_id } = borrower;
+  const { name, email, date, borrow_date, image, book_name } = borrower;
   return (
     <>
       <tr>
@@ -9,8 +9,11 @@ const AllBorrowTable = ({ borrower, serialNumber }) => {
         </td>
         <td>{name}</td>
         <td>{email}</td>
+
+        <td>{borrow_date}</td>
         <td>{date}</td>
-        <td>{book_id}</td>
+
+        <td>{book_name}</td>
       </tr>
     </>
   );

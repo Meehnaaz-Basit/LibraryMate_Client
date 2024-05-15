@@ -21,8 +21,9 @@ const AllBorrowers = () => {
                 <th>Profile</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Date</th>
-                <th>Book_name</th>
+                <th>Borrow Date</th>
+                <th>Return Date</th>
+                <th>Book Name</th>
               </tr>
             </thead>
             <tbody>
