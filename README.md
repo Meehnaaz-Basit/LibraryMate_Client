@@ -17,7 +17,7 @@ A well-renowned school needs a Library Management System that allows them to add
 
 ## Live Site URL
 
-[Library Management System Live](https://example.com)
+[Library Management System Live](https://librarymate-549da.web.app/)
 
 ## Features
 
