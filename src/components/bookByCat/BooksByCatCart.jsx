@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Button from "../sharedItems/Button";
 
 const BooksByCatCart = ({ categoryWiseBook }) => {
   const {
@@ -23,15 +24,16 @@ const BooksByCatCart = ({ categoryWiseBook }) => {
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{book_name}</h2>
+        <h2 className="card-title text-teal-600">{book_name}</h2>
         <p>Author: {author_name}</p>
         <p>Category: {category}</p>
         <p>Rating: {rating}</p>
-        <div className="card-actions">
-          <Link to={`/bookDetail/${_id}`} className="btn btn-primary">
-            View Details
+        <p>Quantity: {quantity}</p>
+        <div className="card-actions flex justify-between">
+          <Link to={`/bookDetail/${_id}`}>
+            <Button buttonText="View Detail"></Button>
           </Link>
-          <button className="btn btn-primary">Update</button>
+          <Button buttonText="Update"></Button>
         </div>
       </div>
     </div>

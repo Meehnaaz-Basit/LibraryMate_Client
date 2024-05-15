@@ -145,7 +145,9 @@ const Nav = () => {
                 )}
               </div>
               <div>
-                <button onClick={handleLogOut}>logout</button>
+                <button onClick={handleLogOut}>
+                  <Button buttonText="LogOut"></Button>
+                </button>
               </div>
             </>
           ) : (

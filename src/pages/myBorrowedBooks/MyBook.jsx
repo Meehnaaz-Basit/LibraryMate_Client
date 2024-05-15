@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import Button from "../../components/sharedItems/Button";
 
 const MyBook = ({ book, books, setBooks }) => {
   const {
@@ -67,18 +68,14 @@ const MyBook = ({ book, books, setBooks }) => {
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{book_name}</h2>
+        <h2 className="card-title text-teal-600">{book_name}</h2>
         <p>Category: {category}</p>
         <p>Borrowed Date: {borrow_date}</p>
         <p>Return Date: {date}</p>
 
         <div>
-          <button
-            onClick={() => handleReturn(_id)}
-            className="btn btn-secondary"
-          >
-            {" "}
-            Return
+          <button onClick={() => handleReturn(_id)}>
+            <Button buttonText="Return"></Button>
           </button>
         </div>
       </div>

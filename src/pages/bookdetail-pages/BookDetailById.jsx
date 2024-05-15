@@ -228,6 +228,7 @@ import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import Button from "../../components/sharedItems/Button";
 
 const BookDetailById = () => {
   const { user } = useContext(AuthContext);
@@ -372,14 +373,14 @@ const BookDetailById = () => {
   };
 
   return (
-    <div className="flex flex-col  justify-center text-center items-center lg:max-w-3xl m-auto">
+    <div className="flex flex-col  justify-center text-center items-center ">
       <div className="text-center capitalize">
         <h2 className="text-teal-600 font-bold text-2xl">
           detail: <span className="underline">{book_name}</span>
         </h2>
       </div>
 
-      <div className="mt-8 flex gap-8 md:flex-row flex-col items-center ">
+      <div className="mt-8 flex gap-8 md:flex-row flex-col items-center lg:max-w-4xl p-6 m-auto shadow-lg ">
         <div className="basis-1/2">
           <img className="h-60 object-contain" src={book_image} alt="" />
         </div>
@@ -393,12 +394,11 @@ const BookDetailById = () => {
           <p>About: {about}</p>
         </div>
       </div>
-      <div>
+      <div className="my-6">
         <button
-          className="btn"
           onClick={() => document.getElementById("my_modal_1").showModal()}
         >
-          Borrow
+          <Button buttonText="Borrow"></Button>
         </button>
         <dialog id="my_modal_1" className="modal">
           <div className="modal-box">
@@ -510,8 +510,10 @@ const BookDetailById = () => {
                     />
                   </div>
                 </div>
-                <div>
-                  <button type="submit">submit</button>
+                <div className="flex justify-between ">
+                  <button type="submit">
+                    <Button buttonText="Submit"></Button>
+                  </button>
                   <button onClick={handleCloseModal} className="btn">
                     Close
                   </button>

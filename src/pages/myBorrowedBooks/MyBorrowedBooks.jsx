@@ -20,8 +20,10 @@ const MyBorrowedBooks = () => {
   }, [allBorrowers, user]);
 
   return (
-    <div>
-      <h2>my borrowed books </h2>
+    <div className="my-6">
+      <h2 className="text-center text-teal-600 text-2xl font-bold my-8 font-merriweather capitalize">
+        my borrowed books list{" "}
+      </h2>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
         {books.map((book) => (
           <MyBook
