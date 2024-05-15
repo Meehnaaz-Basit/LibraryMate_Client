@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Button from "../../components/sharedItems/Button";
 
 const BookTable = ({ book, serialNumber }) => {
   const {
@@ -22,11 +23,13 @@ const BookTable = ({ book, serialNumber }) => {
         <td>{category}</td>
         <td>{quantity}</td>
         <td>{rating}</td>
-        <td className="flex flex-col">
-          <Link to={`/bookDetail/${_id}`} className="btn">
-            Details
+        <td className="flex flex-col gap-3">
+          <Link to={`/bookDetail/${_id}`}>
+            <Button buttonText="Details"></Button>
           </Link>
-          <Link to={`/update/${_id}`}>Update</Link>
+          <Link to={`/update/${_id}`} className="btn  bg-orange-600 text-white">
+            Update
+          </Link>
         </td>
       </tr>
     </>

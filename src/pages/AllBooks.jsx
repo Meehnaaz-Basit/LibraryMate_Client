@@ -30,8 +30,13 @@ const AllBooks = () => {
   const filteredBooks = getFilteredBooks();
 
   return (
-    <div>
-      <div className="flex justify-between">
+    <div className="my-8">
+      <div className="font-merriweather lg:text-5xl text-2xl capitalize font-bold text-center my-6 text-teal-600">
+        <h2>
+          all <span className="text-orange-600">books</span>{" "}
+        </h2>
+      </div>
+      <div className="flex justify-between my-6">
         <div>
           {/* Dropdown menu */}
           <select value={view} onChange={handleViewChange}>
@@ -47,7 +52,6 @@ const AllBooks = () => {
           </select>
         </div>
       </div>
-      <h2>all books here</h2>
 
       {/*  */}
       <div>

@@ -12,8 +12,8 @@ const Footer = () => {
               src="https://i.ibb.co/5kD1HtX/REsidencehub-1.png"
               alt=""
             />
-            <h1 className="text-3xl font-bold text-center">
-              Residence<span className="text-orange-500">Hub</span>
+            <h1 className="text-3xl font-bold text-center text-teal-600">
+              Library<span className="text-orange-600">Mate</span>
             </h1>
           </div>
           <nav className="grid grid-flow-col gap-4">
