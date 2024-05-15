@@ -210,7 +210,7 @@ const Update = () => {
           </fieldset>
           <input
             type="submit"
-            className="btn w-full border-2 mt-6"
+            className="btn w-full border-2 mt-6 mb-8 bg-teal-600 text-white"
             value="Update Books"
           />
         </form>

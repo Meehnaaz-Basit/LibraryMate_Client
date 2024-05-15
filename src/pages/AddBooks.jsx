@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 const AddBooks = () => {
   const handleAddBooks = (e) => {
     e.preventDefault();
@@ -23,16 +25,36 @@ const AddBooks = () => {
     };
     // console.log(newAddedBook);
 
+    // fetch("https://library-server-jade.vercel.app/allBooks", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(newAddedBook),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     // console.log(data);
+    //   });
+
     fetch("https://library-server-jade.vercel.app/allBooks", {
       method: "POST",
       headers: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(newAddedBook),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
+      .then((res) => {
+        if (res.ok) {
+          toast.success("Book added successfully!");
+          e.target.reset(); // Clear the form
+        } else {
+          throw new Error("Failed to add book");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        toast.error("Failed to add book. Please try again later.");
       });
   };
 
@@ -173,7 +195,7 @@ const AddBooks = () => {
           </fieldset>
           <input
             type="submit"
-            className="btn w-full border-2 mt-6"
+            className="btn w-full border-2 mt-6 mb-8 bg-teal-600 text-white"
             value="Add Books"
           />
         </form>
