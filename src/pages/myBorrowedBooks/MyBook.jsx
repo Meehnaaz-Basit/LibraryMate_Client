@@ -1,7 +1,18 @@
 import Swal from "sweetalert2";
 
 const MyBook = ({ book, books, setBooks }) => {
-  const { _id, name, email, date, book_id, book_name, quantity } = book;
+  const {
+    _id,
+    name,
+    email,
+    date,
+    borrow_date,
+    book_id,
+    book_name,
+    category,
+    book_image,
+    quantity,
+  } = book;
 
   const handleReturn = (_id) => {
     Swal.fire({
@@ -48,16 +59,19 @@ const MyBook = ({ book, books, setBooks }) => {
 
   return (
     <div className="card bg-base-100 shadow-xl">
-      {/* <figure>
-          <img
-            src={book_image}
-            alt="book"
-            className="h-60 w-full object-contain bg-gray-200"
-          />
-        </figure> */}
+      <figure>
+        <img
+          src={book_image}
+          alt="book"
+          className="h-60 w-full object-contain bg-gray-200"
+        />
+      </figure>
       <div className="card-body">
-        <h2 className="card-title">{name}</h2>
         <h2 className="card-title">{book_name}</h2>
+        <p>Category: {category}</p>
+        <p>Borrowed Date: {borrow_date}</p>
+        <p>Return Date: {date}</p>
+
         <div>
           <button
             onClick={() => handleReturn(_id)}

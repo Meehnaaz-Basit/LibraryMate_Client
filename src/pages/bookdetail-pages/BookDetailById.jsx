@@ -232,7 +232,17 @@ import { toast } from "react-toastify";
 const BookDetailById = () => {
   const { user } = useContext(AuthContext);
   const book = useLoaderData();
-  const { _id, book_name, book_image } = book;
+  const {
+    _id,
+    book_name,
+    book_image,
+    category,
+    quantity,
+    author_name,
+    rating,
+    short_description,
+    about,
+  } = book;
   const [borrowedBooks, setBorrowedBooks] = useState([]);
   const [borrowDate, setBorrowDate] = useState(getCurrentDate());
   const [returnDate, setReturnDate] = useState("");
@@ -302,6 +312,8 @@ const BookDetailById = () => {
     const image = user.photoURL;
     const book_id = e.target._id.value;
     const book_name = e.target.book_name.value;
+    const book_image = e.target.book_image.value;
+    const category = e.target.category.value;
 
     const borrower_info = {
       name,
@@ -310,6 +322,8 @@ const BookDetailById = () => {
       image,
       book_id,
       book_name,
+      book_image,
+      category,
       borrow_date: borrowDate,
     };
 
@@ -358,10 +372,26 @@ const BookDetailById = () => {
   };
 
   return (
-    <div>
-      <h2>detail: {book_name}</h2>
-      <div>
-        <img className="h-60 object-contain" src={book_image} alt="" />
+    <div className="flex flex-col  justify-center text-center items-center lg:max-w-3xl m-auto">
+      <div className="text-center capitalize">
+        <h2 className="text-teal-600 font-bold text-2xl">
+          detail: <span className="underline">{book_name}</span>
+        </h2>
+      </div>
+
+      <div className="mt-8 flex gap-8 md:flex-row flex-col items-center ">
+        <div className="basis-1/2">
+          <img className="h-60 object-contain" src={book_image} alt="" />
+        </div>
+        <div className="text-left">
+          <h1 className="text-teal-600 font-bold text-xl">{book_name}</h1>
+          <p>{short_description}</p>
+          <p>Category: {category}</p>
+          <p>Rating: {rating}</p>
+          <p> Quantity Available: {quantity}</p>
+          <h4>By: {author_name}</h4>
+          <p>About: {about}</p>
+        </div>
       </div>
       <div>
         <button
@@ -379,6 +409,28 @@ const BookDetailById = () => {
             <div className="modal-action justify-center">
               <form onSubmit={handleBorrow}>
                 <div className="">
+                  <div className="mb-4">
+                    <input
+                      id="category"
+                      type="hidden"
+                      defaultValue={category}
+                      disabled
+                      name="category"
+                      className="w-full p-3 border-b-2"
+                      required
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <input
+                      id="book_image"
+                      type="hidden"
+                      defaultValue={book_image}
+                      disabled
+                      name="book_image"
+                      className="w-full p-3 border-b-2"
+                      required
+                    />
+                  </div>
                   <div className="mb-4">
                     <input
                       id="book_name"
