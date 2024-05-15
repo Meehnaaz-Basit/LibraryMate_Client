@@ -121,7 +121,12 @@ const Nav = () => {
             href="/"
             className="md:text-4xl text-xl font-extrabold text-teal-600 font-merriweather"
           >
-            Library<span className="text-orange-600">Mate</span>
+            {/* Library<span className="text-orange-600">Mate</span> */}
+            <img
+              src="https://i.ibb.co/7JFLDxW/LIBRARYMATE1.png"
+              className="w-28"
+              alt=""
+            />
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
