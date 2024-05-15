@@ -14,7 +14,7 @@ const MyBook = ({ book, books, setBooks }) => {
       confirmButtonText: "Yes, Return!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/allBorrowers/${_id}`, {
+        fetch(`https://library-server-jade.vercel.app/allBorrowers/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

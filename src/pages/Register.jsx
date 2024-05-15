@@ -23,7 +23,7 @@ const Register = () => {
     const photoURL = form.get("photoURL");
 
     // const userInfo = { name, email, password, photoURL };
-    console.log(name, email, password, photoURL);
+    // console.log(name, email, password, photoURL);
 
     // Password validation
     if (!containsUppercase(password)) {
@@ -45,7 +45,7 @@ const Register = () => {
     // create
     createUser(email, password, photoURL)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
 
         updateProfile(result.user, { displayName: name, photoURL: photoURL });
         navigate(location?.state ? location.state : "/login");
@@ -53,7 +53,7 @@ const Register = () => {
         toast.success("Registered Successfully ");
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
         if (error.code === "auth/email-already-in-use") {
           toast.error(
             "Email is already in use. Please use a different email address."

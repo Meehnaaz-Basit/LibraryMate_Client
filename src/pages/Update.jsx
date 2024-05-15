@@ -42,9 +42,9 @@ const Update = () => {
       short_description,
       about,
     };
-    console.log(updateBook);
+    // console.log(updateBook);
 
-    fetch(`http://localhost:5000/bookDetail/${_id}`, {
+    fetch(`https://library-server-jade.vercel.app/bookDetail/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

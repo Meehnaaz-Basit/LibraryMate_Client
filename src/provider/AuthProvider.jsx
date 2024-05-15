@@ -33,13 +33,13 @@ const AuthProvider = ({ children }) => {
   //
   const logIn = (email, password) => {
     setLoading(true);
-    console.log("login");
+    // console.log("login");
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const logOut = () => {
     setLoading(true);
-    console.log("logout");
+    // console.log("logout");
     return signOut(auth);
   };
 

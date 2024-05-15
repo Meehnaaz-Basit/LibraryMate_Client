@@ -27,7 +27,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/categories"),
+        loader: () =>
+          fetch("https://library-server-jade.vercel.app/categories"),
       },
       {
         path: "/login",
@@ -48,13 +49,15 @@ const router = createBrowserRouter([
       {
         path: "/allBooks",
         element: <AllBooks></AllBooks>,
-        loader: () => fetch("http://localhost:5000/allBooks"),
+        loader: () => fetch("https://library-server-jade.vercel.app/allBooks"),
       },
       {
         path: "/singleCategory/:category",
         element: <BookByCategory></BookByCategory>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/singleCategory/${params.category}`),
+          fetch(
+            `https://library-server-jade.vercel.app/singleCategory/${params.category}`
+          ),
       },
       {
         path: "/bookDetail/:id",
@@ -64,7 +67,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookDetail/${params.id}`),
+          fetch(
+            `https://library-server-jade.vercel.app/bookDetail/${params.id}`
+          ),
       },
       {
         path: "/allBorrowers",
@@ -73,7 +78,8 @@ const router = createBrowserRouter([
             <AllBorrowers></AllBorrowers>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/allBorrowers"),
+        loader: () =>
+          fetch("https://library-server-jade.vercel.app/allBorrowers"),
       },
       {
         path: "/myBorrowed",
@@ -82,7 +88,8 @@ const router = createBrowserRouter([
             <MyBorrowedBooks></MyBorrowedBooks>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/allBorrowers"),
+        loader: () =>
+          fetch("https://library-server-jade.vercel.app/allBorrowers"),
       },
       {
         path: "/update/:id",
@@ -92,7 +99,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookDetail/${params.id}`),
+          fetch(
+            `https://library-server-jade.vercel.app/bookDetail/${params.id}`
+          ),
       },
       {
         path: "/*",

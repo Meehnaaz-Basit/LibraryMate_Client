@@ -21,9 +21,9 @@ const AddBooks = () => {
       short_description,
       about,
     };
-    console.log(newAddedBook);
+    // console.log(newAddedBook);
 
-    fetch("http://localhost:5000/allBooks", {
+    fetch("https://library-server-jade.vercel.app/allBooks", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -32,7 +32,7 @@ const AddBooks = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       });
   };
 

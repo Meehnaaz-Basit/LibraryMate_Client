@@ -4,11 +4,11 @@ import BooksByCatCart from "./BooksByCatCart";
 const BookByCategory = () => {
   const { category } = useParams();
   const singleCategory = useLoaderData();
-  console.log(singleCategory, "allbooks");
+  // console.log(singleCategory, "allbooks");
   const booksByCategory = singleCategory.filter(
     (book) => book.category === category
   );
-  console.log(booksByCategory);
+  // console.log(booksByCategory);
   return (
     <div>
       <h2>category</h2>

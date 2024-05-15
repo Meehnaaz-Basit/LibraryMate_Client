@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import Button from "./Button";
 
 const Nav = () => {
   const [theme, setTheme] = useState(null); // Set initial theme to null
@@ -150,7 +151,7 @@ const Nav = () => {
           ) : (
             <>
               <Link to="/login">
-                <button>login</button>
+                <Button buttonText="Login"></Button>
               </Link>
             </>
           )}

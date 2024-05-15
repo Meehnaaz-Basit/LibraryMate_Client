@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 
 const Root = () => {
   return (
-    <div>
+    <div className="font-lato">
       <Nav></Nav>
       <div className="min-h-[calc(100vh-352px)] ">
         <Outlet></Outlet>

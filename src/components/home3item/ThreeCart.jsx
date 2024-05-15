@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Button from "../sharedItems/Button";
 
 const ThreeCart = ({ book }) => {
   const {
@@ -22,13 +23,15 @@ const ThreeCart = ({ book }) => {
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{book_name}</h2>
+        <h2 className="card-title font-merriweather capitalize text-teal-600 font-bold text-2xl">
+          {book_name}
+        </h2>
         <p>Author: {author_name}</p>
         <p>Category: {category}</p>
         <p>Rating: {rating}</p>
         <div className="card-actions">
-          <Link to={`/bookDetail/${_id}`} className="btn btn-primary">
-            View Details
+          <Link to={`/bookDetail/${_id}`}>
+            <Button buttonText="View Details"></Button>
           </Link>
         </div>
       </div>

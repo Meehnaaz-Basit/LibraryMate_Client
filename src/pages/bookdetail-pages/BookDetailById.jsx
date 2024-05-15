@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const BookDetailById = () => {
   const { user } = useContext(AuthContext);
@@ -14,11 +15,11 @@ const BookDetailById = () => {
 
   useEffect(() => {
     if (!user || !user.email) {
-      console.log("User not logged in or email not available");
+      toast.alert("User not logged in or email not available");
       return;
     }
 
-    fetch(`http://localhost:5000/allBorrowers/${user.email}`)
+    fetch(`https://library-server-jade.vercel.app/allBorrowers/${user.email}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
@@ -66,7 +67,7 @@ const BookDetailById = () => {
       return;
     }
 
-    console.log("borrowed submit pressed");
+    // console.log("borrowed submit pressed");
     document.getElementById("my_modal_1").close();
 
     const name = e.target.name.value;
@@ -84,9 +85,9 @@ const BookDetailById = () => {
       book_id,
       book_name,
     };
-    console.log(borrower_info);
+    // console.log(borrower_info);
 
-    fetch("http://localhost:5000/allBorrowers", {
+    fetch("https://library-server-jade.vercel.app/allBorrowers", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -95,7 +96,7 @@ const BookDetailById = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
 
         // Update borrowedBooks state after successful borrow operation
         setBorrowedBooks([...borrowedBooks, bookId]);
@@ -107,7 +108,7 @@ const BookDetailById = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         Swal.fire({
           icon: "error",
           title: "Oops...",

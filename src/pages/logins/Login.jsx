@@ -16,18 +16,18 @@ const Login = () => {
     const email = form.get("email");
     const password = form.get("password");
 
-    console.log(email, password);
+    // console.log(email, password);
 
     //
     logIn(email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         toast.success("Logged In Successfully");
         // navigate after login
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
         if (error.code === "auth/wrong-password") {
           toast.error("Incorrect password. Please try again.");
         } else if (error.code === "auth/user-not-found") {
@@ -43,13 +43,13 @@ const Login = () => {
     e.preventDefault();
     loginWithGoogle()
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         toast.success("Logged In Successfully with Google ");
         // navigate after login
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
-        console.log(error.message);
+        // console.log(error.message);
       });
   };
 
