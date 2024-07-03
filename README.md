@@ -43,7 +43,46 @@ The Library Management System is built to efficiently manage book collection. It
 ## If you want to clone
 
 1. **Clone the repository**:
-   ```sh
-   git clone https://github.com/Meehnaaz-Basit/LibraryMate_Client.git  or download the repository
-   cd LibraryMate
-   ```
+
+** Download the repository **
+
+-**OR**: Clone the repository
+
+```sh
+git clone https://github.com/Meehnaaz-Basit/LibraryMate_Client.git
+cd LibraryMate
+```
+
+2. ** On terminal write **
+
+- cd LibraryMate
+- npm install
+
+3. ** Create an `.env.local` file in the root directory and add the codes: **
+
+```sh
+
+VITE_APIKEY=####
+VITE_AUTHDOMAIN=####
+VITE_PROJECTID=####
+VITE_STORAGEBUCKET=####
+VITE_MESSAGINGSENDERID=####
+VITE_APPID=####
+
+```
+
+- Note: replace the `#` with your firebase auth configuration
+
+4. ** Clone the server side of this project **
+
+- You will get it here : `https://github.com/Meehnaaz-Basit/LibraryMate_Server`
+
+1.  - clone this
+2.  - npm install
+3.  - Make an `.env` file in the root directory
+4.  - Replace the `#` below code with your MongoDB server User name and password
+
+```sh
+DB_USER=#
+DB_PASS=#
+```
