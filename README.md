@@ -9,7 +9,7 @@ Currently, two official plugins are available:
 
 # LibraryMate
 
-LibraryMate is a comprehensive Library Management System built for a well-renowned school. It enables efficient management of the school's book collection with secure user authentication, role-based access, and robust CRUD operations. Users can add, update, borrow, and return books with real-time updates and a responsive design that works seamlessly across all devices.
+The Library Management System is built to efficiently manage book collection. It features secure user authentication, role-based access, and robust CRUD operations for book management. Users can add, update, borrow, and return books, with real-time updates and responsive design across devices.
 
 ## Live Site URL
 
@@ -20,7 +20,6 @@ LibraryMate is a comprehensive Library Management System built for a well-renown
 1. **User Authentication & Role Management**
 
    - Secure email/password and Google login.
-   - Role-specific access, such as a "librarian" role for advanced book management.
 
 2. **Book Borrowing System**
 
@@ -40,3 +39,11 @@ LibraryMate is a comprehensive Library Management System built for a well-renown
 - **Authentication**: Firebase, JWT
 - **Deployment**: Firebase (Client-side), Vercel (Server-side)
 - **Other**: Axios, React Router, SweetAlert, Environment Variables
+
+## If you want to clone
+
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/Meehnaaz-Basit/LibraryMate_Client.git  or download the repository
+   cd LibraryMate
+   ```
