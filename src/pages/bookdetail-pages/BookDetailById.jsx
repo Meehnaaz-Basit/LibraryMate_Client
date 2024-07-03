@@ -271,7 +271,9 @@ const BookDetailById = () => {
 
   const handleCloseModal = (e) => {
     e.preventDefault();
+    document.getElementById("borrow-form").reset();
     document.getElementById("my_modal_1").close();
+    setReturnDate("");
   };
 
   const handleBorrow = (e) => {
@@ -337,12 +339,13 @@ const BookDetailById = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setBorrowedBooks([...borrowedBooks, bookId]);
+        setBorrowedBooks([...borrowedBooks, { book_id: bookId }]);
         Swal.fire({
           icon: "success",
           title: "Success!",
           text: "The book has been successfully borrowed.",
         });
+        handleCloseModal(e);
       })
       .catch((err) => {
         Swal.fire({
@@ -407,7 +410,7 @@ const BookDetailById = () => {
             </h3>
 
             <div className="modal-action justify-center">
-              <form onSubmit={handleBorrow}>
+              <form onSubmit={handleBorrow} id="borrow-form">
                 <div className="">
                   <div className="mb-4">
                     <input

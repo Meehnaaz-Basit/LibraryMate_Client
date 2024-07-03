@@ -9,20 +9,34 @@ Currently, two official plugins are available:
 
 # LibraryMate
 
-**Assignment_ID**: assignment_category_0008
-
-## Website Theme
-
-A well-renowned school needs a Library Management System that allows them to add books of different categories to their collection, update book information, borrow and return books, and keep track of these actions. The system includes various features to manage the library effectively.
+LibraryMate is a comprehensive Library Management System built for a well-renowned school. It enables efficient management of the school's book collection with secure user authentication, role-based access, and robust CRUD operations. Users can add, update, borrow, and return books with real-time updates and a responsive design that works seamlessly across all devices.
 
 ## Live Site URL
 
-[Library Management System Live](https://librarymate-549da.web.app/)
+[LibraryMate Live Site](https://librarymate-549da.web.app/)
 
 ## Features
 
-- **Book Management**: Add, update, and delete books with categories, authors, ratings, and more.
-- **User Authentication**: Secure login and registration system with email/password and third-party (Google) authentication.
-- **Borrow and Return Books**: Users can borrow books with a specified return date and return them, with the system updating the book quantity accordingly.
-- **Responsive Design**: Optimized for mobile, tablet, and desktop views.
-- **Private Routes**: Secure routes for managing books and viewing borrowed books, accessible only to logged-in users.
+1. **User Authentication & Role Management**
+
+   - Secure email/password and Google login.
+   - Role-specific access, such as a "librarian" role for advanced book management.
+
+2. **Book Borrowing System**
+
+   - Real-time updates on book quantities.
+   - Modal form for borrowing with user details and return date.
+   - Restriction on borrowing more than 3 books at a time.
+
+3. **Dynamic Book Management**
+   - Comprehensive CRUD operations with toast notifications.
+   - Category-based book views with detailed pages.
+   - Switch between card view and table view, and filter available books.
+
+## Technologies Used
+
+- **Frontend**: React.js, TailwindCSS, React Rating, Swiper JS, React Hook Form
+- **Backend**: Node.js, Express.js, MongoDB
+- **Authentication**: Firebase, JWT
+- **Deployment**: Firebase (Client-side), Vercel (Server-side)
+- **Other**: Axios, React Router, SweetAlert, Environment Variables
